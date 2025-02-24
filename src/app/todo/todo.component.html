@@ -1,0 +1,131 @@
+<div class="container">
+
+    <div class="card">
+
+        <h1>Todo</h1>
+
+        <form [formGroup]="form" (submit)="processForm()">
+        
+            <!-- <ul>
+                <li>Form valid: {{ form.valid }}</li>
+                <li>Form invalid: {{ form.invalid }}</li>
+            </ul> -->
+
+            <div class="row mb-3">
+
+                <label for="description" class="col-sm-2 col-form-label">Description</label>
+
+                <div class="col-sm-10">
+
+                    <input type="text" 
+                        class="form-control"
+                        id="description"
+                        formControlName="description"
+                        [ngClass]="{
+                            'valid': isCtrlValid('description'), 
+                            'invalid': isCtrlInvalid('description')
+                        }"
+                        >
+                </div>
+
+            </div>
+
+            <fieldset class="row mb-3">
+
+                <legend class="col-form-label col-sm-2 pt-0">Priority</legend>
+
+                <div class="col-sm-10">
+
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" id="high" [value]="2" name="priority" 
+                        formControlName="priority">
+                    <label class="form-check-label" for="high">High</label>
+                    </div>
+
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" id="medium" [value]="1" name="priority"
+                            formControlName="priority">
+                        <label class="form-check-label" for="medium">Medium</label>
+                    </div>
+
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" id="low" [value]="0" name="priority"
+                            formControlName="priority">
+                        <label class="form-check-label" for="low">Low</label>
+                    </div>
+
+                </div>
+
+            </fieldset>
+
+            <div class="row mb-3">
+
+                <label for="due" class="col-sm-2 col-form-label">Due</label>
+
+                <div class="col-sm-10">
+                    <input type="date" 
+                        class="form-control"
+                        id="due"
+                        formControlName="due"
+                        [ngClass]="{
+                            'valid': isCtrlValid('due'),
+                            'invalid': isCtrlInvalid('due')
+                        }">
+                </div>
+
+            </div>
+
+            <div class="row mb-3">
+
+                <div class="col-sm-2"></div>
+
+                <div class="col-sm-10">
+
+                    <button class="btn btn-primary" type="submit"
+                        [disabled]="form.invalid">
+                        Add
+                    </button>
+                
+                </div>
+            </div>
+        
+        </form>
+    
+    </div>
+
+    <div class="card">
+
+        @if(tasks.length > 0) {
+
+            <h1>Tasks</h1>
+
+            @for(task of tasks; let idx = $index; track task) {
+        
+                <div class="card">
+    
+                    <div class="row mb-3">
+                        <div class="col-sm-12 task-desc">
+                            {{ task.description }}
+                        </div>
+                    </div>
+    
+                    <div class="row mb-3">
+                        <div class="col-sm-9 task-info">
+                            {{ getFormattedPriority(task.priority) }}
+                        </div>
+                        <div class="col-sm-3 task-info">
+                            {{ getFormattedDate(task.due) }}
+                        </div>
+                    </div>
+                
+                </div>
+            
+            }
+
+        } @else {
+            <h1>No Tasks Added</h1>
+        }
+
+    </div>
+
+</div>
