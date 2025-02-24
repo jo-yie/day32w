@@ -10,6 +10,7 @@ import { formatDate } from '@angular/common';
   styleUrl: './todo.component.css'
 })
 export class TodoComponent {
+[x: string]: any;
 
   private fb = inject(FormBuilder)
   
@@ -56,9 +57,26 @@ export class TodoComponent {
 
   protected isCtrlInvalid(ctrl: string): boolean {
     // return !!this.form.get(ctrl)?.invalid
-    
+
     const control = this.form.get(ctrl);
     return !!control && control.invalid && (control.touched || control.dirty);
+
+  }
+
+  get descriptionControl() {
+    return this.form.get('description');
+  }
+
+  protected isDateValid(dateIn: string): boolean {
+
+    // 2025-02-19
+    const dateNow = formatDate(new Date(), 'yyyy-MM-dd', 'en')
+
+    if (dateIn < dateNow) {
+      return false
+    } else {
+      return true
+    }
 
   }
 
