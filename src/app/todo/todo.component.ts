@@ -64,7 +64,11 @@ export class TodoComponent {
   }
 
   get descriptionControl() {
-    return this.form.get('description');
+    return this.form.get('description')
+  }
+
+  get dueControl() {
+    return this.form.get('due')
   }
 
   protected isDateValid(dateIn: string): boolean {
