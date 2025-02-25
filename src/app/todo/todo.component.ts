@@ -63,6 +63,11 @@ export class TodoComponent {
 
   }
 
+  // // convenience getter for easy access to form fields
+  // get f() {
+  //   return this.form.controls
+  // }
+
   get descriptionControl() {
     return this.form.get('description')
   }

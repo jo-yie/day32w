@@ -22,13 +22,13 @@
                         id="description"
                         formControlName="description"
                         [ngClass]="{
-                            'valid': isCtrlValid('description'), 
-                            'invalid': isCtrlInvalid('description')
+                            'is-valid': isCtrlValid('description'), 
+                            'is-invalid': isCtrlInvalid('description')
                         }"
                         >
 
                     <!-- Validation error messages -->
-                    <div *ngIf="isCtrlInvalid('description')" class="text-danger">
+                    <div *ngIf="isCtrlInvalid('description')" class="invalid-feedback">
                         <div *ngIf="descriptionControl?.errors?.['required']">Description is required.</div>
                         <div *ngIf="descriptionControl?.errors?.['minlength']">Description must be at least 5 characters long.</div>
                     </div>
@@ -75,12 +75,12 @@
                         id="due"
                         formControlName="due"
                         [ngClass]="{
-                            'valid': isCtrlValid('due'),
-                            'invalid': isCtrlInvalid('due')
+                            'is-valid': isCtrlValid('due'),
+                            'is-invalid': isCtrlInvalid('due')
                         }">
 
                     <!-- Validation error messages -->
-                    <div *ngIf="isCtrlInvalid('due')" class="text-danger">
+                    <div *ngIf="isCtrlInvalid('due')" class="invalid-feedback">
                         <div *ngIf="dueControl?.errors?.['required']">Date is required.</div>
                     </div>
 
