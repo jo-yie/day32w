@@ -1,7 +1,9 @@
 # Day 32 Workshop 
 ## Friday 21 Feb 2025 
-### Angular Form + Date Validation
+### Angular Todo Form + Date Validation
 
+
+<img width="1728" alt="Screenshot 2025-02-25 at 4 15 22 PM" src="https://github.com/user-attachments/assets/c7ef9a51-b266-495e-b216-c55388506c97" />
 
 
 - Basic Styling with Bootstrap 
