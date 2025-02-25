@@ -70,6 +70,35 @@
                 <label for="due" class="col-sm-2 col-form-label">Due</label>
 
                 <div class="col-sm-4">
+
+                    <mat-form-field class="example-full-width">
+                        <mat-label>Choose a date</mat-label>
+                        <input matInput 
+                            [min]="minDate" 
+                            [matDatepicker]="picker" 
+                            readonly 
+                            formControlName="due"
+                            >
+                        <mat-hint>MM/DD/YYYY</mat-hint>
+                        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                        <mat-datepicker #picker></mat-datepicker>
+
+                        <!-- <div *ngIf="isCtrlInvalid('due')" class="invalid-feedback"> -->
+                            <mat-error *ngIf="dueControl?.hasError('required')">Date is required.</mat-error>
+                        <!-- </div> -->
+
+                    </mat-form-field>   
+
+                </div> 
+
+            </div>
+
+            <!-- Original Due Field -->
+            <!-- <div class="row mb-3">
+
+                <label for="due" class="col-sm-2 col-form-label">Due</label>
+
+                <div class="col-sm-4">
                     <input type="date" 
                         class="form-control"
                         id="due"
@@ -77,16 +106,17 @@
                         [ngClass]="{
                             'is-valid': isCtrlValid('due'),
                             'is-invalid': isCtrlInvalid('due')
-                        }">
+                        }"
+                        [min]="minDate"
+                        >
 
-                    <!-- Validation error messages -->
                     <div *ngIf="isCtrlInvalid('due')" class="invalid-feedback">
                         <div *ngIf="dueControl?.errors?.['required']">Date is required.</div>
                     </div>
 
                 </div>
 
-            </div>
+            </div> -->
 
             <div class="row mb-3">
 
@@ -128,7 +158,6 @@
                         </div>
                         <div class="col-sm-3 task-info">
                             {{ getFormattedDate(task.due) }}
-                            {{ task.due }}
                         </div>
                     </div>
                 

@@ -16,11 +16,16 @@ export class TodoComponent {
   
   protected form !: FormGroup
 
+  protected minDate?: string;
+
   protected tasks : TodoObject[] = []
 
   ngOnInit(): void {
 
     this.form = this.createForm()
+
+    const today = new Date()
+    this.minDate = today.toISOString().split('T')[0] // yyyy-MM-dd
 
   }
   
@@ -32,7 +37,7 @@ export class TodoComponent {
       description: this.fb.control<string>("", [ Validators.required, Validators.minLength(5) ]), 
       priority: this.fb.control<number>(0, [ Validators.required ]), 
       due: this.fb.control<string>("", [ Validators.required ])
-      
+
     })
 
   }
@@ -74,19 +79,6 @@ export class TodoComponent {
 
   get dueControl() {
     return this.form.get('due')
-  }
-
-  protected isDateValid(dateIn: string): boolean {
-
-    // 2025-02-19
-    const dateNow = formatDate(new Date(), 'yyyy-MM-dd', 'en')
-
-    if (dateIn < dateNow) {
-      return false
-    } else {
-      return true
-    }
-
   }
 
   protected getFormattedPriority(input: number): string {
